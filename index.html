@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mohannad Rababah — Robotics</title>
-<meta name="description" content="Mohannad Rababah, computer engineering student at JUST and Chair of IEEE RAS JUST. Autonomous robots in Unity, Gazebo and NVIDIA Isaac Sim, and on real hardware.">
+<meta name="description" content="Mohannad Rababah, computer engineering student at JUST and Chair of IEEE RAS JUST. AI and robotics: computer vision, reinforcement learning and autonomous navigation, from simulation to real hardware.">
 <meta property="og:title" content="Mohannad Rababah — Robotics">
-<meta property="og:description" content="A sumo robot trained in Unity, a farm robot that reads leaves, a warehouse fleet in Isaac Sim.">
+<meta property="og:description" content="AI and robotics: computer vision, reinforcement learning and autonomous navigation, from simulation to real hardware.">
 <meta property="og:image" content="assets/media/og.jpg">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -34,8 +34,8 @@
   <section class="hero" aria-labelledby="name">
     <div class="hero__text">
       <h1 id="name" class="hero__name"><span>Mohannad</span> <span>Rababah</span></h1>
-      <p class="hero__lede">Computer engineering student at JUST. I build robots that make their own decisions: a sumo robot trained in Unity, a farm robot that reads tomato leaves, and a warehouse fleet running in NVIDIA Isaac Sim.</p>
-      <p class="hero__meta">Irbid, Jordan. Chair of IEEE RAS JUST, Oct 2025 to Oct 2026.</p>
+      <p class="hero__lede">Computer engineering student at JUST, working where artificial intelligence meets robotics. I build perception with computer vision and deep learning, train decision-making with reinforcement learning, and develop autonomous navigation in ROS 2, from simulation through to real hardware.</p>
+      <p class="hero__meta">Amman, Jordan. Chair of IEEE RAS JUST, Oct 2025 to Oct 2026.</p>
       <ul class="hero__links">
         <li><a href="mailto:M.Alrababah@outlook.com">Email</a></li>
         <li><a href="https://github.com/Kaizoku-04" rel="noopener">GitHub</a></li>
@@ -52,13 +52,67 @@
     <dl>
       <div><dt>Study</dt><dd>B.Sc. Computer Engineering, Jordan University of Science and Technology, Oct 2022 to Jan 2027</dd></div>
       <div><dt>GPA</dt><dd>3.71 / 4.0</dd></div>
-      <div><dt>Works in</dt><dd>ROS 2 Jazzy, Nav2, Isaac Sim, Gazebo, Unity ML-Agents, PyTorch, ESP32</dd></div>
+      <div><dt>Works in</dt><dd>ROS 2 Jazzy, Nav2, Isaac Sim, Gazebo, Computer Vision, PyTorch, ESP32</dd></div>
       <div><dt>Languages</dt><dd>Arabic (native), English (CEFR C2), Japanese (beginner)</dd></div>
     </dl>
   </section>
 
   <section id="work" class="section" aria-labelledby="work-title">
     <h2 id="work-title" class="section__title">Work</h2>
+
+    <article class="project" id="florabot" aria-labelledby="florabot-title">
+      <header class="project__head">
+        <h3 id="florabot-title">FloraBot</h3>
+        <p class="project__when">Autonomous agricultural robot, 2025 to 2026, supported by JODDB</p>
+      </header>
+      <div class="project__body">
+        <p>A field robot that drives greenhouse rows, checks every plant and recommends how much water and nitrogen each one needs. Its vision pipeline detects leaves with YOLO11, cuts them out with Segment Anything and classifies disease with ResNet-50 (97.6% combined validation accuracy). Florence-2 writes a plain-language note for each plant, and a multispectral camera adds NDVI.</p>
+        <p>The decisions come from a Deep Q-Network trained in the DSSAT crop simulator. I tested navigation in a simulated greenhouse in Gazebo before running in the field, and everything reports to a Flutter dashboard.</p>
+        <p>FloraBot won second place in the Jordan Engineers Association's 2025 graduation projects competition for engineering faculties, and was selected for exhibition at SOFEX 2026, 27 to 29 October. I produced its exhibition videos.</p>
+        <ul class="stack" aria-label="Tools"><li>YOLO11</li><li>SAM</li><li>ResNet-50</li><li>Florence-2</li><li>DQN</li><li>ROS 2</li><li>Gazebo</li><li>Jetson Nano</li><li>Flutter</li><li>Blender</li></ul>
+      </div>
+      <div class="media media--flora">
+        <figure class="media__lead media__play">
+          <video data-autoplay controls muted loop playsinline preload="none" poster="assets/media/florabot-sim-poster.jpg" aria-label="FloraBot driving between crop rows, in the field and in the simulated greenhouse">
+            <source src="assets/media/florabot-sim.mp4" type="video/mp4">
+          </video>
+          <figcaption>Field runs and the simulated greenhouse</figcaption>
+        </figure>
+        <figure class="media__wide media__play">
+          <video data-autoplay controls muted loop playsinline preload="none" poster="assets/media/florabot-ai-poster.jpg" aria-label="FloraBot's AI pipeline: leaf detection, segmentation, disease classification and the water and nitrogen policy">
+            <source src="assets/media/florabot-ai.mp4" type="video/mp4">
+          </video>
+          <figcaption>AI pipeline: YOLO11, SAM, ResNet-50 and the DQN policy</figcaption>
+        </figure>
+        <figure class="media__wide media__play">
+          <video data-autoplay controls muted loop playsinline preload="none" poster="assets/media/florabot-hardware-poster.jpg" aria-label="Rendered turntable of FloraBot with labelled components">
+            <source src="assets/media/florabot-hardware.mp4" type="video/mp4">
+          </video>
+          <figcaption>Hardware render, Blender</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="project" id="openamr" aria-labelledby="openamr-title">
+      <header class="project__head">
+        <h3 id="openamr-title">OpenAMR Swarm</h3>
+        <p class="project__when">Warehouse robot fleet, 2026</p>
+      </header>
+      <div class="project__body">
+        <p>A decentralised fleet of autonomous mobile robots that runs a whole warehouse box flow: receiving, storage, outbound, charging and recovering from faults. Each robot plans its own route through a shared lane graph, docks with AprilTags and hands boxes to UR10e arm cells. The full floor runs in NVIDIA Isaac Sim 6 with ROS 2 Jazzy and Nav2.</p>
+        <p>I own the robot and physical layer: the Isaac Sim worlds, navigation, docking, the swarm agent and the arm cells. I also led the redesign of the robot itself, OpenAMR v2. The renders below show the new chassis.</p>
+        <ul class="stack" aria-label="Tools"><li>Isaac Sim 6</li><li>ROS 2 Jazzy</li><li>Nav2</li><li>SLAM</li><li>AprilTag docking</li><li>UR10e</li><li>Python</li><li>Blender</li></ul>
+      </div>
+      <div class="media media--amr">
+        <figure class="media__lead"><img src="assets/media/amr-isaac-overview.webp" alt="Isaac Sim warehouse with pallet racking and OpenAMR robots in the cross-aisles" loading="lazy" width="1600" height="900"><figcaption>The warehouse in Isaac Sim, path-traced</figcaption></figure>
+        <figure><img src="assets/media/amr-isaac-aisle.webp" alt="Two robots travelling down the main cross-aisle" loading="lazy" width="1600" height="900"><figcaption>Main aisle</figcaption></figure>
+        <figure><img src="assets/media/amr-isaac-arm.webp" alt="A UR10e arm on its pedestal at the receiving cell, with a robot arriving" loading="lazy" width="1600" height="900"><figcaption>Receiving cell, UR10e</figcaption></figure>
+        <figure class="media__fill"><img src="assets/media/amr-isaac-charging.webp" alt="Charging bank with robots docked in the green bays" loading="lazy" width="1600" height="900"><figcaption>Charging bank</figcaption></figure>
+        <figure class="media__wide media__light"><img src="assets/media/amr-v2-driving.webp" alt="Rendered OpenAMR v2 robot driving, with its floor light projected ahead" loading="lazy" width="1600" height="1000"><figcaption>OpenAMR v2, driving state</figcaption></figure>
+        <figure class="media__light"><img src="assets/media/amr-v2-side.webp" alt="Side view of OpenAMR v2, number 07" loading="lazy" width="1600" height="1000"><figcaption>v2, side</figcaption></figure>
+        <figure class="media__light"><img src="assets/media/amr-v2-front.webp" alt="Front view of OpenAMR v2 with emergency stops on both corners" loading="lazy" width="1600" height="1000"><figcaption>v2, front</figcaption></figure>
+      </div>
+    </article>
 
     <article class="project" id="sumo" aria-labelledby="sumo-title">
       <header class="project__head">
@@ -89,65 +143,11 @@
       </div>
     </article>
 
-    <article class="project" id="florabot" aria-labelledby="florabot-title">
-      <header class="project__head">
-        <h3 id="florabot-title">FloraBot</h3>
-        <p class="project__when">Autonomous agricultural robot, 2025 to 2026, supported by JODDB</p>
-      </header>
-      <div class="project__body">
-        <p>A field robot that drives greenhouse rows, checks every plant and recommends how much water and nitrogen each one needs. Its vision pipeline detects leaves with YOLO11, cuts them out with Segment Anything and classifies disease with ResNet-50 (97.6% combined validation accuracy). Florence-2 writes a plain-language note for each plant, and a multispectral camera adds NDVI.</p>
-        <p>The decisions come from a Deep Q-Network trained in the DSSAT crop simulator. I tested navigation in a simulated greenhouse in Gazebo before running in the field, and everything reports to a Flutter dashboard. I also produced the exhibition videos for SOFEX 2026.</p>
-        <ul class="stack" aria-label="Tools"><li>YOLO11</li><li>SAM</li><li>ResNet-50</li><li>Florence-2</li><li>DQN</li><li>ROS 2</li><li>Gazebo</li><li>Jetson Nano</li><li>Flutter</li><li>Blender</li></ul>
-      </div>
-      <div class="media media--flora">
-        <figure class="media__lead">
-          <video data-autoplay muted loop playsinline preload="none" poster="assets/media/florabot-field-poster.jpg" aria-label="FloraBot driving between crop rows, in the field and in simulation">
-            <source src="assets/media/florabot-field.mp4" type="video/mp4">
-          </video>
-          <figcaption>Field runs and the simulated greenhouse</figcaption>
-        </figure>
-        <figure class="media__wide">
-          <video data-autoplay muted loop playsinline preload="none" poster="assets/media/florabot-turntable-poster.jpg" aria-label="Rendered turntable of FloraBot with labelled components">
-            <source src="assets/media/florabot-turntable.mp4" type="video/mp4">
-          </video>
-          <figcaption>Hardware render, Blender</figcaption>
-        </figure>
-        <figure><img src="assets/media/florabot-ai-yolo.webp" alt="YOLO detecting tomato leaves on a greenhouse plant" loading="lazy" width="1280" height="720"><figcaption>Leaf detection, YOLO11</figcaption></figure>
-        <figure><img src="assets/media/florabot-ai-sam.webp" alt="Segment Anything isolating individual tomato leaves" loading="lazy" width="1280" height="720"><figcaption>Segmentation, SAM</figcaption></figure>
-        <figure><img src="assets/media/florabot-ai-resnet.webp" alt="ResNet-50 classifying one leaf as early blight and one as healthy" loading="lazy" width="1280" height="720"><figcaption>Disease class, ResNet-50</figcaption></figure>
-        <figure><img src="assets/media/florabot-ai-policy.webp" alt="Grid of water and nitrogen doses chosen by the decision engine" loading="lazy" width="1280" height="720"><figcaption>Water and nitrogen policy, DQN</figcaption></figure>
-        <figure class="media__pair"><img src="assets/media/florabot-real-field.webp" alt="The real FloraBot on bare soil between crop rows, seen from above" loading="lazy" width="1280" height="720"><figcaption>The real robot in the field</figcaption></figure>
-        <figure class="media__pair"><img src="assets/media/florabot-real-sensors.webp" alt="The real FloraBot's sensor mast: Survey3 multispectral camera above an RGB webcam" loading="lazy" width="1000" height="1333"><figcaption>The real sensor mast</figcaption></figure>
-      </div>
-    </article>
-
-    <article class="project" id="openamr" aria-labelledby="openamr-title">
-      <header class="project__head">
-        <h3 id="openamr-title">OpenAMR Swarm</h3>
-        <p class="project__when">Warehouse robot fleet, 2026</p>
-      </header>
-      <div class="project__body">
-        <p>A decentralised fleet of autonomous mobile robots that runs a whole warehouse box flow: receiving, storage, outbound, charging and recovering from faults. Each robot plans its own route through a shared lane graph, docks with AprilTags and hands boxes to UR10e arm cells. The full floor runs in NVIDIA Isaac Sim 6 with ROS 2 Jazzy and Nav2.</p>
-        <p>I own the robot and physical layer: the Isaac Sim worlds, navigation, docking, the swarm agent and the arm cells. I also led the redesign of the robot itself, OpenAMR v2. The renders below show the new chassis.</p>
-        <ul class="stack" aria-label="Tools"><li>Isaac Sim 6</li><li>ROS 2 Jazzy</li><li>Nav2</li><li>SLAM</li><li>AprilTag docking</li><li>UR10e</li><li>Python</li><li>Blender</li></ul>
-      </div>
-      <div class="media media--amr">
-        <figure class="media__lead"><img src="assets/media/amr-isaac-overview.webp" alt="Isaac Sim warehouse with pallet racking and OpenAMR robots in the cross-aisles" loading="lazy" width="1600" height="900"><figcaption>The warehouse in Isaac Sim, path-traced</figcaption></figure>
-        <figure><img src="assets/media/amr-isaac-aisle.webp" alt="Two robots travelling down the main cross-aisle" loading="lazy" width="1600" height="900"><figcaption>Main aisle</figcaption></figure>
-        <figure><img src="assets/media/amr-isaac-arm.webp" alt="A UR10e arm on its pedestal at the receiving cell, with a robot arriving" loading="lazy" width="1600" height="900"><figcaption>Receiving cell, UR10e</figcaption></figure>
-        <figure><img src="assets/media/amr-isaac-charging.webp" alt="Charging bank with robots docked in the green bays" loading="lazy" width="1600" height="900"><figcaption>Charging bank</figcaption></figure>
-        <figure><img src="assets/media/amr-isaac-transfer.webp" alt="A robot carrying a box between storage racks" loading="lazy" width="1600" height="900"><figcaption>Bin transfer</figcaption></figure>
-        <figure class="media__wide media__light"><img src="assets/media/amr-v2-driving.webp" alt="Rendered OpenAMR v2 robot driving, with its floor light projected ahead" loading="lazy" width="1600" height="1000"><figcaption>OpenAMR v2, driving state</figcaption></figure>
-        <figure class="media__light"><img src="assets/media/amr-v2-side.webp" alt="Side view of OpenAMR v2, number 07" loading="lazy" width="1600" height="1000"><figcaption>v2, side</figcaption></figure>
-        <figure class="media__light"><img src="assets/media/amr-v2-front.webp" alt="Front view of OpenAMR v2 with emergency stops on both corners" loading="lazy" width="1600" height="1000"><figcaption>v2, front</figcaption></figure>
-      </div>
-    </article>
-
     <div class="more">
       <h3>Also</h3>
       <ul>
         <li><strong>Line-following robot.</strong> PID control with real-time sensor feedback, JUST Robotics Competition 2023.</li>
-        <li><strong>Jordan Autonomous Grand Prix 2027.</strong> A national 1:10-scale racing competition with a human-driven tier and a fully autonomous tier, which I am organising for IEEE RAS JUST with the chapter's vice-chair.</li>
+        <li><strong>Founder, Jordan Autonomous Grand Prix 2027.</strong> A national 1:10-scale racing competition with a human-driven tier and a fully autonomous tier, funded by IEEE RAS.</li>
         <li><strong>Competitive programming.</strong> 200+ problems solved on Codeforces; ICPC-style contests and IEEEXtreme.</li>
       </ul>
     </div>
@@ -156,31 +156,20 @@
   <section id="leadership" class="section" aria-labelledby="leadership-title">
     <h2 id="leadership-title" class="section__title">Leadership</h2>
     <div class="lead-intro">
-      <figure class="lead-intro__card"><img src="assets/media/ras-chair-card.webp" alt="IEEE RAS JUST board announcement card for Chairman Mohannad Rababah" loading="lazy" width="1080" height="1350"></figure>
-      <div>
+      <header>
         <h3>Chair, IEEE Robotics and Automation Society, JUST student chapter</h3>
         <p class="project__when">October 2025 to October 2026</p>
+      </header>
+      <div>
         <p>I led a five-person board and a team of student coaches. We ran hands-on workshops every month, took robotics into local schools, and built partnerships with RAS chapters in Tunisia and Türkiye.</p>
         <dl class="numbers">
           <div><dt>150+</dt><dd>students reached in the first semester</dd></div>
-          <div><dt>1,484</dt><dd>Instagram followers, after 50% growth in the first semester</dd></div>
-          <div><dt>3</dt><dd>countries in the IEEE RAS Day 2026 series</dd></div>
+          <div><dt>1,400+</dt><dd>Instagram followers, after 50% growth in the first semester</dd></div>
+          <div><dt>7+</dt><dd>countries reached by the chapter's activities</dd></div>
           <div><dt>100</dt><dd>hours of training delivered</dd></div>
         </dl>
       </div>
     </div>
-
-    <ol class="timeline" aria-label="Chapter activities, in order">
-      <li><time datetime="2025-10">Oct 2025</time><p>New board announced. I started as Chair.</p></li>
-      <li><time datetime="2025-11">Nov 2025</time><p>Arduino workshop, 16 hours, at the Center of Excellence for Innovative Projects under the Dean of Engineering's patronage.</p></li>
-      <li><time datetime="2025-12">Dec 2025</time><p>Linux and Unity for robotics online workshops; a 16-hour 3D design course in SolidWorks; a chapter booth at ENGITEK 2025.</p></li>
-      <li><time datetime="2025-12">Fall 2025</time><p>Two robotics workshops in local schools. First joint activity with IEEE RAS ISET Bizerte, Tunisia.</p></li>
-      <li><time datetime="2026-02">Feb 2026</time><p>RAS membership session with ISET Bizerte. Membership drive with the IEEE JUST Student Branch.</p></li>
-      <li><time datetime="2026-03">Mar 2026</time><p>36-hour PCB design course with IEEE AESS. IEEE charity iftar for children.</p></li>
-      <li><time datetime="2026-05">May 2026</time><p>Intro to IoT with ESP32, 16 hours.</p></li>
-      <li><time datetime="2026-09">Sep 2026</time><p>IEEE RAS Day: a four-night online robotics series by Jordan, Tunisia and Türkiye (with ISET Bizerte and Bursa Technical University). I taught session two, on microcontrollers, microprocessors and Raspberry Pi.</p></li>
-      <li><time datetime="2026-10">2026 to 2027</time><p>Organising the Jordan Autonomous Grand Prix 2027, with funding from IEEE RAS.</p></li>
-    </ol>
 
     <div class="gallery" aria-label="Chapter photos">
       <figure class="gallery__wide"><img src="assets/media/ras-arduino-group.webp" alt="Group photo of the Arduino workshop participants holding their certificates" loading="lazy" width="1080" height="719"><figcaption>Arduino workshop, Nov 2025</figcaption></figure>
@@ -198,13 +187,11 @@
   <section id="honors" class="section" aria-labelledby="honors-title">
     <h2 id="honors-title" class="section__title">Honors and awards</h2>
     <ul class="honors">
-      <li><span class="honors__year">2026</span><span class="honors__what"><strong>AstroCode 2026</strong>, Amman Arab University.</span></li>
-      <li><span class="honors__year">2024</span><span class="honors__what"><strong>2nd place, NASA Space Apps Challenge</strong>, regional round in Ar-Ramtha. An AI-based solution to a NASA challenge, built with a multidisciplinary team.</span></li>
+      <li><span class="honors__year">2026</span><span class="honors__what"><strong>Selected for exhibition at SOFEX 2026</strong>, 27 to 29 October, with FloraBot.</span></li>
+      <li><span class="honors__year">2026</span><span class="honors__what"><strong>2nd place, Jordan Engineers Association graduation projects competition 2025</strong>, for engineering faculties, with FloraBot. <a href="https://www.linkedin.com/feed/update/urn:li:activity:7494848688188694528" rel="noopener">See the post</a></span></li>
+      <li><span class="honors__year">2024</span><span class="honors__what"><strong>2nd place, NASA Space Apps Challenge</strong>, regional round in Ar-Ramtha. An AI-based solution to a NASA challenge, built with a multidisciplinary team. <a href="https://www.linkedin.com/posts/laith-allabadi_spaceapps-nasa-seismicdata-ugcPost-7249453138636685313-d3rM/" rel="noopener">See the post</a></span></li>
       <li><span class="honors__year">2024</span><span class="honors__what"><strong>8th place, JUST Teams Programming Contest</strong>, organised by the Computer Science Department and the ACM student chapter.</span></li>
-      <li><span class="honors__year">2024</span><span class="honors__what"><strong>IEEEXtreme 18.0</strong>, a 24-hour programming competition with 19,000+ participants worldwide.</span></li>
-      <li><span class="honors__year">2024</span><span class="honors__what"><strong>HTU Sumo Robot Contest</strong>, competed with my autonomous sumo robot.</span></li>
-      <li><span class="honors__year">2024</span><span class="honors__what"><strong>Robbing Balloons problem-solving competition</strong> and <strong>JPC Contest 4.0</strong>.</span></li>
-      <li><span class="honors__year">2023</span><span class="honors__what"><strong>JUST Robotics Competition</strong>, with a PID line-following robot.</span></li>
+      <li><span class="honors__year">2024</span><span class="honors__what"><strong>JPC Contest 4.0</strong>, JUST Programming Chapter.</span></li>
     </ul>
   </section>
 
@@ -214,8 +201,6 @@
     <ul class="certs">
       <li><button type="button" data-full="assets/certs/ras-chair.webp"><img src="assets/certs/ras-chair-thumb.webp" alt="" loading="lazy"><span>IEEE volunteering: RAS JUST Chair</span><small>IEEE, 2025 to 2026</small></button></li>
       <li><button type="button" data-full="assets/certs/nasa-space-apps.webp"><img src="assets/certs/nasa-space-apps-thumb.webp" alt="" loading="lazy"><span>Galactic Problem Solver</span><small>NASA Space Apps, 2024</small></button></li>
-      <li><button type="button" data-full="assets/certs/ros2-localization.webp"><img src="assets/certs/ros2-localization-thumb.webp" alt="" loading="lazy"><span>Self-driving and ROS 2: map and localization</span><small>Udemy, 2026</small></button></li>
-      <li><button type="button" data-full="assets/certs/ros2-odometry.webp"><img src="assets/certs/ros2-odometry-thumb.webp" alt="" loading="lazy"><span>Self-driving and ROS 2: odometry and control</span><small>Udemy, 2025</small></button></li>
       <li><button type="button" data-full="assets/certs/robotna-iot.webp"><img src="assets/certs/robotna-iot-thumb.webp" alt="" loading="lazy"><span>IoT advanced track, 132 hours</span><small>Robotna, 2026</small></button></li>
       <li><button type="button" data-full="assets/certs/htu-sumo.webp"><img src="assets/certs/htu-sumo-thumb.webp" alt="" loading="lazy"><span>Sumo Robot Contest</span><small>Al-Hussein Technical University, 2024</small></button></li>
       <li><button type="button" data-full="assets/certs/just-robotics.webp"><img src="assets/certs/just-robotics-thumb.webp" alt="" loading="lazy"><span>JUST Robotics Competition</span><small>IEEE JUST, 2023</small></button></li>
@@ -228,6 +213,7 @@
     <div class="certs-more">
       <h3>Courses</h3>
       <ul>
+        <li>Self Driving and ROS 2, Learn by Doing: <button type="button" class="linkish" data-full="assets/certs/ros2-odometry.webp">Odometry &amp; Control</button> and <button type="button" class="linkish" data-full="assets/certs/ros2-localization.webp">Map &amp; Localization</button>, Udemy, 2025 to 2026</li>
         <li>Deep Learning Specialization and Machine Learning Specialization, DeepLearning.AI, 2025</li>
         <li>OpenCV, TensorFlow/Keras and PyTorch bootcamps, OpenCV University, 2025</li>
         <li>Kaggle: <button type="button" class="linkish" data-full="assets/certs/kaggle-intro-ml.webp">Intro to Machine Learning</button>, <button type="button" class="linkish" data-full="assets/certs/kaggle-intermediate-ml.webp">Intermediate Machine Learning</button>, <button type="button" class="linkish" data-full="assets/certs/kaggle-deep-learning.webp">Intro to Deep Learning</button>, <button type="button" class="linkish" data-full="assets/certs/kaggle-feature-eng.webp">Feature Engineering</button>, <button type="button" class="linkish" data-full="assets/certs/kaggle-dataviz.webp">Data Visualization</button>, <button type="button" class="linkish" data-full="assets/certs/kaggle-pandas.webp">Pandas</button>, 2025</li>
@@ -243,7 +229,6 @@
     <ul class="hero__links">
       <li><a href="https://github.com/Kaizoku-04" rel="noopener">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/mohannadrababah/" rel="noopener">LinkedIn</a></li>
-      <li><a href="https://www.instagram.com/ieee_ras_just/" rel="noopener">IEEE RAS JUST</a></li>
     </ul>
   </section>
 </main>

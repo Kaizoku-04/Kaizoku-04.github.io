@@ -20,8 +20,9 @@ def img(src, name, width=1600, crop=None, gray=False, q=80):
     return im.size
 
 def clip(src, name, start, dur, width=1280, crf=27, vf_extra=''):
+    """dur=None keeps the whole video from start."""
     vf = f'scale={width}:-2:flags=lanczos{vf_extra},format=yuv420p'
-    base = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-ss', str(start), '-t', str(dur), '-i', str(src), '-an', '-vf', vf]
+    base = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-ss', str(start)] + (['-t', str(dur)] if dur else []) + ['-i', str(src), '-an', '-vf', vf]
     subprocess.run(base + ['-c:v', 'libx264', '-preset', 'slow', '-crf', str(crf), '-movflags', '+faststart', str(OUT / f'{name}.mp4')], check=True)
     subprocess.run(base + ['-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', str(crf + 8), '-row-mt', '1', str(OUT / f'{name}.webm')], check=True)
     subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-ss', str(start + 0.5), '-i', str(src), '-frames:v', '1',
@@ -37,16 +38,10 @@ clip(sumo / 'WhatsApp Video 2026-10-21 at 8.58.16 PM.mp4', 'sumo-real-wiring', 0
 
 # FloraBot
 fv = R / 'FloraBot/main/Visualization'
-clip(fv / 'screen/renders/sim-field/sim_field_PREVIEW.mp4', 'florabot-field', 0, 14, crf=28)
-clip(fv / 'screen/renders/hardware/hardware_tv.mp4', 'florabot-turntable', 3, 12, crf=28)
-ai = fv / 'screen/renders/ai_pipeline_v2_tv.mp4'
-for t, n in [(13, 'yolo'), (19, 'sam'), (25, 'resnet'), (61, 'policy')]:
-    subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-ss', str(t), '-i', str(ai), '-frames:v', '1',
-                    str(OUT / f'_ai-{n}.png')], check=True)
-    img(OUT / f'_ai-{n}.png', f'florabot-ai-{n}', 1280)
-    (OUT / f'_ai-{n}.png').unlink()
-img(fv / 'real robot/photo_3_2026-09-06_23-25-25.jpg', 'florabot-real-sensors', 1000)
-img(fv / 'real robot/Screenshot from 2026-09-16 17-00-12.png', 'florabot-real-chassis', 1000)
+# the three SOFEX screen videos, full length, 30 fps
+clip(fv / 'screen/renders/sim-field/sim_field_PREVIEW.mp4', 'florabot-sim', 0, None, vf_extra=',fps=30')
+clip(fv / 'screen/renders/hardware/hardware_tv.mp4', 'florabot-hardware', 0, None, vf_extra=',fps=30')
+clip(fv / 'screen/renders/ai_pipeline_v2_tv.mp4', 'florabot-ai', 0, None, crf=25, vf_extra=',fps=30')
 
 # OpenAMR
 sr = R / 'OpenAMR/sim/renders'
@@ -54,7 +49,6 @@ for f, n in [('2026-09-25_presentation_warehouse/overview.png', 'amr-isaac-overv
              ('2026-09-25_presentation_warehouse/aisle.png', 'amr-isaac-aisle'),
              ('2026-09-25_presentation_warehouse/charging.png', 'amr-isaac-charging'),
              ('2026-09-25_presentation_warehouse/receiving_arm.png', 'amr-isaac-arm'),
-             ('2026-09-26_box_handoff/bin_transfer.png', 'amr-isaac-transfer'),
              ('2026-09-26_box_handoff/handoff.png', 'amr-isaac-handoff'),
              ('2026-10-21_v2_revL/view_iso.jpg', 'amr-v2-iso'),
              ('2026-10-21_v2_revL/state_driving.jpg', 'amr-v2-driving'),
@@ -65,7 +59,7 @@ for f, n in [('2026-09-25_presentation_warehouse/overview.png', 'amr-isaac-overv
 
 # Leadership (Instagram, IEEE RAS JUST)
 ig = D / 'Me/portfolio/_raw/instagram/img'
-for f, n in [('2025-10-25_DQPdHpJjCy-_1.jpg', 'ras-chair-card'),
+for f, n in [
              ('2025-12-04_DR2j3jYjN9O_4.jpg', 'ras-arduino-group'),
              ('2025-12-04_DR2j3jYjN9O_1.jpg', 'ras-arduino-teaching'),
              ('2025-12-04_DR2j3jYjN9O_12.jpg', 'ras-arduino-handson'),

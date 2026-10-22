@@ -20,7 +20,7 @@
 
   // Media sit in black and white and take their colour when they reach the middle of the screen.
   // Videos only play while on screen.
-  const toned = document.querySelectorAll('.media figure, .gallery figure, .lead-intro__card');
+  const toned = document.querySelectorAll('.media figure, .gallery figure');
   toned.forEach(f => f.querySelector('img, video')?.classList.add('tone'));
   const liveObs = new IntersectionObserver((entries) => {
     for (const en of entries) {
