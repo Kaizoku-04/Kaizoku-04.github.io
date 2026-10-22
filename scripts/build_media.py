@@ -71,6 +71,12 @@ for f, n in [
              ('2026-09-11_DdJJQM3jPTl_1.jpg', 'ras-day-session')]:
     img(ig / f, n, 1080)
 
+# Honors: pictures from the public LinkedIn posts about each award
+lp = D / 'Me/portfolio/_raw/linkedin/posts'
+for f, n in [('jea-1786911173277.jpg', 'honor-jea'),
+             ('nasa-1728404309745.jpg', 'honor-nasa-award')]:
+    img(lp / f, n, 800, q=82)
+
 # Portrait: background removed, black and white
 from rembg import remove, new_session
 src = ImageOps.exif_transpose(Image.open(D / 'Me/photos/IMG_7428.JPG'))

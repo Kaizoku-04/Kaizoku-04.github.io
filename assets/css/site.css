@@ -211,6 +211,9 @@ main, .bar, .foot { position: relative; z-index: 1; }
 }
 .honors__year { font-stretch: 125%; font-weight: 200; font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height: 1; }
 .honors__what { max-width: 40em; }
+.honors__media { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.honors__media figure { margin: 0; background: var(--matte); }
+.honors__media img { height: clamp(110px, 13vw, 180px); width: auto; }
 .honors strong { font-weight: 650; }
 
 /* Certificates */
@@ -266,6 +269,7 @@ main, .bar, .foot { position: relative; z-index: 1; }
   .media--amr > .media__wide, .media--amr > .media__fill { grid-column: 1 / -1; }
   .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .honors li { grid-template-columns: 1fr; row-gap: 6px; }
+  .honors__media { grid-column: 1; }
 }
 @media (max-width: 560px) {
   .bar { flex-direction: column; align-items: flex-start; gap: 6px; padding-top: 10px; padding-bottom: 10px; }
